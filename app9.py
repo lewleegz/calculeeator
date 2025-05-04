@@ -37,7 +37,7 @@ def evaluate_calculation():
     except:
         st.session_state.calculation = "Error"
 
-col1, col2, col3, col4 = st.columns(4, gap="small")
+col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     if st.button("1"): add_to_calculation(1)
