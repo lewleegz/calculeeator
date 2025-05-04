@@ -42,7 +42,7 @@ def evaluate_calculation():
         st.session_state.calculation = "Error"
 
 # Create calculator buttons
-col1, col2, col3, col4 = st.columns(4)
+col1, spacer, col2, spacer, col3, spacer, col4 = st.columns([4,0.2,4,0.2,4,0.2,4])
 
 with col1:
     if st.button("1"): add_to_calculation(1)
