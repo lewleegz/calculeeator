@@ -1,30 +1,27 @@
 import streamlit as st
 
-# Initialize session state variables
+
 if "calculation" not in st.session_state:
     st.session_state.calculation = ""
 if "nth_root_mode" not in st.session_state:
     st.session_state.nth_root_mode = False
 
-# Function to display the current calculation
 def display_calculation():
     st.text_area("Calculation", value=st.session_state.calculation, height=70, key="calculation_display")
 
-# Function to add symbols to the calculation
+
 def add_to_calculation(symbol):
     st.session_state.calculation += str(symbol)
 
-# Function to clear the calculation
+
 def clear_field():
     st.session_state.calculation = ""
     st.session_state.nth_root_mode = False
 
-# Function to activate nth root mode
 def activate_nth_root():
     st.session_state.calculation += "√"
     st.session_state.nth_root_mode = True
 
-# Function to evaluate the calculation
 def evaluate_calculation():
     try:
         if st.session_state.nth_root_mode:
@@ -36,13 +33,11 @@ def evaluate_calculation():
             st.session_state.calculation = str(round(result, 10))
             st.session_state.nth_root_mode = False
         else:
-            # Evaluate the expression
             st.session_state.calculation = str(eval(st.session_state.calculation))
     except:
         st.session_state.calculation = "Error"
 
-# Create calculator buttons
-col1, spacer, col2, spacer, col3, spacer, col4 = st.columns([4,0.1,4,0.1,4,0.1,4])
+col1, col2, col3, col4 = st.columns(4, gap="small")
 
 with col1:
     if st.button("1"): add_to_calculation(1)
@@ -70,5 +65,4 @@ with col4:
     if st.button("/"): add_to_calculation("/")
     if st.button("y√x"): activate_nth_root()
 
-# Display the current calculation after processing button clicks
 display_calculation()
